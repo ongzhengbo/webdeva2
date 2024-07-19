@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mosquito Empire!</title>
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Mosquito Empire">
+
+    <link rel="icon" type="image/x-icon" href="Icons/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/logo.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/logo.png">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/logo.png" alt="Mosquito Empire">
+        </div>
+        <div class="web-name">
+            <p>MOSQUITO EMPIRE</p>
+        </div>
+        <div class="hamburger" id="hamburger-menu">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </header>
+    <main>
+        <audio id="mosquito1" src="sounds/mosquito1.mp3"></audio>
+        <nav id="navigation-bar">
+            <section class="featured-mosquito">
+                <div class="mosquito" data-target="content-biology">
+                    <img src="images/Mosquito1.png" alt="Biology Mosquito">
+                    <div class="mosquito-name-box">
+                        <p class="mosquito-name">Biology Mosquito</p>
+                        <p class="mosquito-desc">This mosquito studies biology.</p>
+                    </div>
+                </div>
+                <div class="mosquito" data-target="content-historian">
+                    <img src="images/Mosquito2.png" alt="Historian Mosquito">
+                    <div class="mosquito-name-box">
+                        <p class="mosquito-name">Historian Mosquito</p>
+                        <p class="mosquito-desc">Stories of Mosquito.</p>
+                    </div>
+                </div>
+                <div class="mosquito" data-target="content-forms">
+                    <img src="images/Mosquito3.png" alt="Forms Mosquito">
+                    <div class="mosquito-name-box">
+                        <p class="mosquito-name">Forms Mosquito</p>
+                        <p class="mosquito-desc">This mosquito helps you diagnose dengue.</p>
+                    </div>
+                </div>
+                <div class="mosquito" data-target="content-reference">
+                    <img src="images/Mosquito4.png" alt="Reference Mosquito">
+                    <div class="mosquito-name-box">
+                        <p class="mosquito-name">Reference Mosquito</p>
+                        <p class="mosquito-desc">This mosquito knows everything.</p>
+                    </div>
+                </div>
+            </section>
+        </nav>
+        <section class="Content-Box" id="main-content">
+            <h1>Kill The Mosquito</h1>
+            <p>Play as the Human who hates Mosquito</p>
+            <button id="play-button">Play Now</button>
+            <p id="game-over-message" class="hidden"></p>
+        </section>
+
+        <section class="Content-Box hidden" id="game">
+            <h1>Mosquito Killing Game</h1>
+            <p>Click on the mosquitoes to kill them!</p>
+            <div id="game-area"> </div>
+            <div id="game-info">
+                <p>Time Left: <span id="time-left">30</span> seconds</p>
+                <p>Mosquitoes Killed: <span id="kill-count">0</span></p>
+            </div>
+        </section>
+
+        <section id="content-biology" class="Content-Box hidden">
+            <h1>Biology Mosquito</h1>
+            <p>Life Cycle of MOsquito</p>
+            <div class="lifecycle-grid">
+                <div class="lifecycle-item" data-target="overlay-egg">
+                    <img src="images/Eggs.png" alt="Mosquito Eggs">
+                </div>
+                <div class="arrow-item">&#10145;</div>
+                <div class="lifecycle-item" data-target="overlay-pupa">
+                    <img src="images/Pupa.png" alt="Mosquito Pupa">
+                </div>
+                <div class="arrow-item">&#10145;</div>
+                <div class="empty-item"></div>
+                <div class="arrow-item">&#10145;</div>
+                <div class="lifecycle-item" data-target="overlay-larva">
+                    <img src="images/Larva.png" alt="Mosquito Larva">
+                </div>
+                <div class="arrow-item">&#10145;</div>
+                <div class="lifecycle-item" data-target="overlay-adult">
+                    <img src="images/Adult.png" alt="Adult Mosquito">
+                </div>
+            </div>
+            <div id="mosquito-prevention">
+                <h2>Prevent Mosquito Breeding</h2>
+                <p>Follow the B-L-O-C-K steps to prevent mosquitoes from breeding in your home:</p>
+                <ul id="block-steps">
+                    <li data-fulltext="Break up hardened soil">B</li>
+                    <li data-fulltext="Lift and empty flowerpot plates">L</li>
+                    <li data-fulltext="Overturn pails and wipe their rims dry">O</li>
+                    <li data-fulltext="Change water in vases regularly">C</li>
+                    <li data-fulltext="Keep roof gutters clear and place BTI insecticide">K</li>
+                </ul>
+            </div>
+        </section>
+        <section id="content-historian" class="Content-Box hidden">
+            <h1>History of Mosquitoes</h1>
+            <p>Mosquitoes have been around for over 100 million years and have evolved with various species. They have had a significant impact on human history due to their role as vectors for diseases such as malaria, dengue fever, and Zika virus.</p>
+            <div class="timeline">
+                <div class="timeline-item" data-year="100 million years ago">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h2>100 million years ago</h2>
+                        <h3>First known mosquitoes</h3>
+                        <p>First known mosquitoes appear in the Cretaceous period.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-year="1880">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h2>1880</h2>
+                        <h3>Malaria parasite discovery</h3>
+                        <p>Charles Louis Alphonse Laveran discovers the malaria parasite in mosquitoes.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-year="1902">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h2>1902</h2>
+                        <h3>Nobel Prize</h3>
+                        <p>Ronald Ross is awarded the Nobel Prize for his work on malaria transmission by mosquitoes.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-year="1950s">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h2>1950s</h2>
+                        <h3>DDT introduction</h3>
+                        <p>Introduction of DDT for mosquito control, leading to a significant reduction in malaria.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-year="2000s">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h2>2000s</h2>
+                        <h3>Genetic modification</h3>
+                        <p>Increased focus on genetic modification of mosquitoes to control populations and reduce disease transmission.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section id="content-forms" class="Content-Box hidden">
+            <h1>Forms Mosquitoes</h1>
+            <p>Answer the following questions to see if you might have dengue symptoms:</p>
+            <form id="dengue-form">
+                <div class="form-group">
+                    <label for="question1">1. Do you have a sudden onset of fever lasting 2-7 days?</label>
+                    <input type="radio" name="question1" value="yes"> Yes
+                    <input type="radio" name="question1" value="no"> No
+                </div>
+                <div class="form-group">
+                    <label for="question2">2. Do you have a headache with pain behind the eyes?</label>
+                    <input type="radio" name="question2" value="yes"> Yes
+                    <input type="radio" name="question2" value="no"> No
+                </div>
+                <div class="form-group">
+                    <label for="question3">3. Are you experiencing joint and muscle pain?</label>
+                    <input type="radio" name="question3" value="yes"> Yes
+                    <input type="radio" name="question3" value="no"> No
+                </div>
+                <div class="form-group">
+                    <label for="question4">4. Do you have nausea or vomiting?</label>
+                    <input type="radio" name="question4" value="yes"> Yes
+                    <input type="radio" name="question4" value="no"> No
+                </div>
+                <div class="form-group">
+                    <label for="question5">5. Do you have a skin rash?</label>
+                    <input type="radio" name="question5" value="yes"> Yes
+                    <input type="radio" name="question5" value="no"> No
+                </div>
+                <button type="submit">Submit</button>
+                <button type="button" id="clear-button">Clear</button>
+            </form>
+            <div id="result" class="hidden">
+                <h2>Results</h2>
+                <p id="result-message"></p>
+            </div>
+        </section>
+        <section id="content-reference" class="Content-Box hidden">
+            <h1>References</h1>
+            <p>For more detailed information on mosquitoes, visit the following resources:</p>
+            <ul class="reference-list">
+                <li><a href="https://www.cdc.gov/mosquitoes/about/index.html" target="_blank">Centers for Disease Control and Prevention: About Mosquitoes</a></li>
+                <li><a href="https://www.who.int/news-room/fact-sheets/detail/vector-borne-diseases" target="_blank">World Health Organization: Vector-borne Diseases</a></li>
+                <li><a href="https://www.nature.com/articles/d41586-019-02059-8" target="_blank">Nature: The Mosquito Factor</a></li>
+                <li><a href="https://www.gov.sg/features/stop-dengue-now" target="_blank">Stop Dengue Now with B-L-O-C-K</a></li>
+            </ul>
+        </section>
+
+        <div id="overlay-adult" class="overlay overlay-hidden">
+            <div class="overlay-content">
+                <span class="close-btn">&times;</span>
+                <img src="images/Adult.png" alt="Adult Mosquito">
+                <p>Adult mosquitoes are the final stage of the mosquito lifecycle. Female mosquitoes lay eggs one at a time directly on water.</p>
+            </div>
+        </div>
+        <div id="overlay-egg" class="overlay overlay-hidden">
+            <div class="overlay-content">
+                <span class="close-btn">&times;</span>
+                <img src="images/Eggs.png" alt="Mosquito Eggs">
+                <p>Eggs hatch within 2-3 days and larvae emerge.</p>
+            </div>
+        </div>
+        <div id="overlay-larva" class="overlay overlay-hidden">
+            <div class="overlay-content">
+                <span class="close-btn">&times;</span>
+                <img src="images/Larva.png" alt="Mosquito Larva">
+                <p>Larvae live in water and develop into pupae in about 4-10 days.</p>
+            </div>
+        </div>
+        <div id="overlay-pupa" class="overlay overlay-hidden">
+            <div class="overlay-content">
+                <span class="close-btn">&times;</span>
+                <img src="images/Pupa.png" alt="Mosquito Pupa">
+                <p>Pupae live in water and develop into adult, flying mosquitoes in 2-3 days.</p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
