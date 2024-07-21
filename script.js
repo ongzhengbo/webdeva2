@@ -113,7 +113,6 @@ document.addEventListener('DOMContentLoaded', function() {
             resultMessage.style.color = "green";
         }
 
-        mosquitoSound.play();
     });
 
     clearButton.addEventListener('click', function() {
