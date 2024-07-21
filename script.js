@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     blockSteps.forEach(step => {
         step.addEventListener('click', function() {
-            // Check if the text is already revealed
+            
             if (this.classList.contains('revealed')) {
                 return;
             }
@@ -173,6 +173,13 @@ document.addEventListener('DOMContentLoaded', function() {
         gameOverMessage.classList.remove('hidden');
         gameArea.innerHTML = ''; // Clear mosquitoes
         mosquitoes = [];
+        exitFullscreen();
+        stopMosquitoSound();
+    }
+
+    function stopMosquitoSound() {
+        mosquitoSound.pause();
+        mosquitoSound.currentTime = 0;
     }
 
     function spawnMosquitoes() {
@@ -198,17 +205,17 @@ document.addEventListener('DOMContentLoaded', function() {
             moveMosquito(mosquito);
         }
 
-        setTimeout(spawnMosquitoes, 1000); // Check to spawn new mosquitoes every second
+        setTimeout(spawnMosquitoes, 1000); 
     }
 
     function moveMosquito(mosquito) {
         function updatePosition() {
-            const deltaX = (Math.random() - 0.5) * 50; // Random delta x between -25 and 25
-            const deltaY = (Math.random() - 0.5) * 50; // Random delta y between -25 and 25
+            const deltaX = (Math.random() - 0.5) * 50; 
+            const deltaY = (Math.random() - 0.5) * 50; 
             let newX = parseFloat(mosquito.style.left) + deltaX;
             let newY = parseFloat(mosquito.style.top) + deltaY;
 
-            // Ensure the mosquito stays within the game area
+            // Ensure it stays within the game area
             if (newX < 0) newX = 0;
             if (newX > gameArea.clientWidth - 50) newX = gameArea.clientWidth - 50;
             if (newY < 0) newY = 0;
@@ -230,11 +237,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const bloodStain = document.createElement('div');
         bloodStain.classList.add('blood-stain');
-        bloodStain.style.left = `${offsetX - 25}px`; // Center the blood stain on the click
+        bloodStain.style.left = `${offsetX - 25}px`; 
         bloodStain.style.top = `${offsetY - 25}px`;
         gameArea.appendChild(bloodStain);
 
-        // Optionally, remove the blood stain after some time
+        //remove the blood stain after some time
         setTimeout(() => bloodStain.remove(), 5000);
     }
 });
@@ -270,4 +277,49 @@ document.addEventListener('DOMContentLoaded', function() {
             featuredMosquito.classList.toggle('hidden');
         }
     });
+});
+
+
+function enterFullscreen() {
+    if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen();
+    } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+        document.documentElement.mozRequestFullScreen();
+    } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari, and Opera
+        document.documentElement.webkitRequestFullscreen();
+    } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+        document.documentElement.msRequestFullscreen();
+    }
+}
+
+function exitFullscreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) { // Firefox
+        document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) { // Chrome, Safari, and Opera
+        document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { // IE/Edge
+        document.msExitFullscreen();
+    }
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+
+
+
+    function toggleFullscreen() {
+    if (!document.fullscreenElement &&    
+        !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {  
+        enterFullscreen();
+    } else {
+        exitFullscreen();
+    }
+}
+
+    const fullscreenButton = document.getElementById('fullscreen-button');
+    fullscreenButton.addEventListener('click', toggleFullscreen);
+
+
 });

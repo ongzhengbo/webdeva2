@@ -379,7 +379,7 @@ main {
     padding: 40px;
     border: 2px solid #000000;
     border-radius: 10px;
-    font-family: 'Press Start 2P', cursive;
+    font-family: cursive;
 }
 
 .form-group {
@@ -434,7 +434,7 @@ button:hover {
     margin-top: 20px;
     border: 2px solid #000;
     border-radius: 10px;
-    font-family: 'Press Start 2P', cursive;
+    font-family:  cursive;
 }
 
 #mosquito-prevention h2 {
@@ -550,6 +550,21 @@ button:hover {
 }
 
 #restart-button:hover {
+    background-color: #FF4500;
+}
+
+#fullscreen-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border: none;
+    background-color: #000000;
+    color: #ffffff;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+#fullscreen-button:hover {
     background-color: #FF4500;
 }
 
