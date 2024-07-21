@@ -1,16 +1,18 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const mosquitoes = document.querySelectorAll('.mosquito');
-    const contentBoxes = document.querySelectorAll('.Content-Box');
-    const lifecycleItems = document.querySelectorAll('.lifecycle-item');
-    const closeBtns = document.querySelectorAll('.close-btn');
+    var mosquitoes = document.querySelectorAll('.mosquito');
+    var contentBoxes = document.querySelectorAll('.Content-Box');
+    var lifecycleItems = document.querySelectorAll('.lifecycle-item');
+    var closeBtns = document.querySelectorAll('.close-btn');
 
-    mosquitoes.forEach(mosquito => {
+    mosquitoes.forEach(function(mosquito) {
         mosquito.addEventListener('click', function() {
-            const targetId = this.getAttribute('data-target');
-            contentBoxes.forEach(box => {
+            var targetId = this.getAttribute('data-target');
+            contentBoxes.forEach(function(box) {
                 if (box.id === targetId) {
                     box.classList.remove('hidden');
-                    box.scrollIntoView({ behavior: 'smooth' });
+                    box.scrollIntoView({
+                        behavior: 'smooth'
+                    });
                 } else if (box.id !== 'main-content' && box.id !== 'game') {
                     box.classList.add('hidden');
                 }
@@ -18,10 +20,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    lifecycleItems.forEach(item => {
+    lifecycleItems.forEach(function(item) {
         item.addEventListener('click', function() {
-            const targetId = this.getAttribute('data-target');
-            const overlay = document.getElementById(targetId);
+            var targetId = this.getAttribute('data-target');
+            var overlay = document.getElementById(targetId);
             if (overlay) {
                 overlay.classList.remove('overlay-hidden');
                 overlay.classList.add('overlay');
@@ -29,9 +31,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    closeBtns.forEach(btn => {
+    closeBtns.forEach(function(btn) {
         btn.addEventListener('click', function() {
-            const overlay = this.closest('.overlay');
+            var overlay = this.closest('.overlay');
             if (overlay) {
                 overlay.classList.remove('overlay');
                 overlay.classList.add('overlay-hidden');
@@ -40,36 +42,29 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-
-
-
 document.addEventListener('DOMContentLoaded', function() {
-    const blockSteps = document.querySelectorAll('#block-steps li');
-    const mosquitoSound = document.getElementById('mosquito1');
+    var blockSteps = document.querySelectorAll('#block-steps li');
 
-    blockSteps.forEach(step => {
+    blockSteps.forEach(function(step) {
         step.addEventListener('click', function() {
-            
             if (this.classList.contains('revealed')) {
                 return;
             }
 
-            const fullText = this.getAttribute('data-fulltext');
-            this.innerHTML = `<span class="reveal-text">${fullText}</span>`;
+            var fullText = this.getAttribute('data-fulltext');
+            this.innerHTML = '<span class="reveal-text">' + fullText + '</span>';
             this.classList.add('revealed');
-            
         });
     });
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    const dengueForm = document.getElementById('dengue-form');
-    const resultSection = document.getElementById('result');
-    const resultMessage = document.getElementById('result-message');
-    const mosquitoSound = document.getElementById('mosquito1');
-    const clearButton = document.getElementById('clear-button');
-    const questions = document.querySelectorAll('.form-group');
-    const warningMessage = document.createElement('p');
+    var dengueForm = document.getElementById('dengue-form');
+    var resultSection = document.getElementById('result');
+    var resultMessage = document.getElementById('result-message');
+    var clearButton = document.getElementById('clear-button');
+    var questions = document.querySelectorAll('.form-group');
+    var warningMessage = document.createElement('p');
 
     warningMessage.innerText = "Please answer all the questions.";
     warningMessage.style.color = "red";
@@ -79,10 +74,12 @@ document.addEventListener('DOMContentLoaded', function() {
     dengueForm.addEventListener('submit', function(event) {
         event.preventDefault();
 
-        let allAnswered = true;
-        questions.forEach((question) => {
-            const inputs = question.querySelectorAll('input[type="radio"]');
-            const answered = Array.from(inputs).some(input => input.checked);
+        var allAnswered = true;
+        questions.forEach(function(question) {
+            var inputs = question.querySelectorAll('input[type="radio"]');
+            var answered = Array.prototype.some.call(inputs, function(input) {
+                return input.checked;
+            });
             if (!answered) {
                 allAnswered = false;
             }
@@ -95,13 +92,13 @@ document.addEventListener('DOMContentLoaded', function() {
             warningMessage.style.display = "none";
         }
 
-        let score = 0;
-        const formData = new FormData(dengueForm);
-        for (let value of formData.values()) {
+        var score = 0;
+        var formData = new FormData(dengueForm);
+        formData.forEach(function(value) {
             if (value === 'yes') {
                 score++;
             }
-        }
+        });
 
         resultSection.classList.remove('hidden');
 
@@ -113,6 +110,8 @@ document.addEventListener('DOMContentLoaded', function() {
             resultMessage.style.color = "green";
         }
 
+        // Scroll to the result section
+        resultSection.scrollIntoView({ behavior: 'smooth' });
     });
 
     clearButton.addEventListener('click', function() {
@@ -125,20 +124,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 document.addEventListener('DOMContentLoaded', function() {
-    const playButton = document.getElementById('play-button');
-    const mainContent = document.getElementById('main-content');
-    const gameSection = document.getElementById('game');
-    const gameArea = document.getElementById('game-area');
-    const timeLeftDisplay = document.getElementById('time-left');
-    const killCountDisplay = document.getElementById('kill-count');
-    const mosquitoSound = document.getElementById('mosquito1');
-    const gameOverMessage = document.getElementById('game-over-message');
+    var playButton = document.getElementById('play-button');
+    var mainContent = document.getElementById('main-content');
+    var gameSection = document.getElementById('game');
+    var gameArea = document.getElementById('game-area');
+    var timeLeftDisplay = document.getElementById('time-left');
+    var killCountDisplay = document.getElementById('kill-count');
+    var mosquitoSound = document.getElementById('mosquito1');
+    var gameOverMessage = document.getElementById('game-over-message');
 
-    let timer;
-    let timeLeft = 30;
-    let killCount = 0;
-    let mosquitoes = [];
-    let gamePlayed = false;
+    var timer;
+    var timeLeft = 30;
+    var killCount = 0;
+    var mosquitoes = [];
+    var gamePlayed = false;
 
     playButton.addEventListener('click', function() {
         mainContent.classList.add('hidden');
@@ -182,37 +181,41 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function spawnMosquitoes() {
-        const mosquitoCount = mosquitoes.length;
-        const newMosquitoes = Math.min(2 - mosquitoCount, 3);
+        var mosquitoCount = mosquitoes.length;
+        var newMosquitoes = Math.min(2 - mosquitoCount, 3);
 
-        for (let i = 0; i < newMosquitoes; i++) {
-            const mosquito = document.createElement('div');
+        for (var i = 0; i < newMosquitoes; i++) {
+            var mosquito = document.createElement('div');
             mosquito.classList.add('game_mosquito');
-            mosquito.style.top = Math.random() * (gameArea.clientHeight - 50) + 'px';
-            mosquito.style.left = Math.random() * (gameArea.clientWidth - 50) + 'px';
-            mosquito.addEventListener('click', function(event) {
-                killCount++;
-                killCountDisplay.textContent = killCount;
-                mosquitoSound.play();
-                createBloodStain(event.clientX, event.clientY, gameArea);
-                mosquito.remove();
-                mosquitoes = mosquitoes.filter(m => m !== mosquito);
-                spawnMosquitoes();
-            });
+            mosquito.style.top = (Math.random() * (gameArea.clientHeight - 50)) + 'px';
+            mosquito.style.left = (Math.random() * (gameArea.clientWidth - 50)) + 'px';
+            mosquito.addEventListener('click', handleMosquitoClick.bind(null, mosquito)); // Allows Mosquitoes to pass straight to the handleMosquito since eventlistiners only receives it
             gameArea.appendChild(mosquito);
             mosquitoes.push(mosquito);
             moveMosquito(mosquito);
         }
 
-        setTimeout(spawnMosquitoes, 1000); 
+        setTimeout(spawnMosquitoes, 1000);
+    }
+
+    function handleMosquitoClick(mosquito, event) {
+        killCount++;
+        killCountDisplay.textContent = killCount;
+        mosquitoSound.play();
+        createBloodStain(event.clientX, event.clientY, gameArea);
+        mosquito.remove();
+        mosquitoes = mosquitoes.filter(function(m) {
+            return m !== mosquito;
+        });
+        spawnMosquitoes();
     }
 
     function moveMosquito(mosquito) {
         function updatePosition() {
-            const deltaX = (Math.random() - 0.5) * 50; 
-            const deltaY = (Math.random() - 0.5) * 50; 
-            let newX = parseFloat(mosquito.style.left) + deltaX;
-            let newY = parseFloat(mosquito.style.top) + deltaY;
+            var deltaX = (Math.random() - 0.5) * 50;
+            var deltaY = (Math.random() - 0.5) * 50;
+            var newX = parseFloat(mosquito.style.left) + deltaX;
+            var newY = parseFloat(mosquito.style.top) + deltaY;
 
             // Ensure it stays within the game area
             if (newX < 0) newX = 0;
@@ -230,28 +233,30 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function createBloodStain(x, y, container) {
-        const rect = container.getBoundingClientRect();
-        const offsetX = x - rect.left;
-        const offsetY = y - rect.top;
+        var rect = container.getBoundingClientRect();
+        var offsetX = x - rect.left;
+        var offsetY = y - rect.top;
 
-        const bloodStain = document.createElement('div');
+        var bloodStain = document.createElement('div');
         bloodStain.classList.add('blood-stain');
-        bloodStain.style.left = `${offsetX - 25}px`; 
-        bloodStain.style.top = `${offsetY - 25}px`;
+        bloodStain.style.left = (offsetX - 25) + 'px';
+        bloodStain.style.top = (offsetY - 25) + 'px';
         gameArea.appendChild(bloodStain);
 
-        //remove the blood stain after some time
-        setTimeout(() => bloodStain.remove(), 5000);
+        // remove the blood stain after some time
+        setTimeout(function() {
+            bloodStain.remove();
+        }, 5000);
     }
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    const timelineItems = document.querySelectorAll('.timeline-item');
+    var timelineItems = document.querySelectorAll('.timeline-item');
 
     function checkTimelineItems() {
-        const triggerBottom = window.innerHeight * 0.8;
-        timelineItems.forEach(item => {
-            const itemTop = item.getBoundingClientRect().top;
+        var triggerBottom = window.innerHeight * 0.8;
+        timelineItems.forEach(function(item) {
+            var itemTop = item.getBoundingClientRect().top;
             if (itemTop < triggerBottom) {
                 item.classList.add('show');
             } else {
@@ -261,23 +266,21 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     window.addEventListener('scroll', checkTimelineItems);
-    checkTimelineItems(); 
-
+    checkTimelineItems();
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    const hamburger = document.getElementById('hamburger-menu');
-    const navigationBar = document.getElementById('navigation-bar');
+    var hamburger = document.getElementById('hamburger-menu');
+    var navigationBar = document.getElementById('navigation-bar');
 
     hamburger.addEventListener('click', function() {
         navigationBar.classList.toggle('hidden');
-        const featuredMosquito = navigationBar.querySelector('.featured-mosquito');
+        var featuredMosquito = navigationBar.querySelector('.featured-mosquito');
         if (featuredMosquito) {
             featuredMosquito.classList.toggle('hidden');
         }
     });
 });
-
 
 function enterFullscreen() {
     if (document.documentElement.requestFullscreen) {
@@ -303,22 +306,16 @@ function exitFullscreen() {
     }
 }
 
-
 document.addEventListener('DOMContentLoaded', function() {
-
-
-
     function toggleFullscreen() {
-    if (!document.fullscreenElement &&    
-        !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {  
-        enterFullscreen();
-    } else {
-        exitFullscreen();
+        if (!document.fullscreenElement &&
+            !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+            enterFullscreen();
+        } else {
+            exitFullscreen();
+        }
     }
-}
 
-    const fullscreenButton = document.getElementById('fullscreen-button');
+    var fullscreenButton = document.getElementById('fullscreen-button');
     fullscreenButton.addEventListener('click', toggleFullscreen);
-
-
 });
